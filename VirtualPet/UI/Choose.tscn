@@ -1,0 +1,92 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UI/Pet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UI/Choose.gd" type="Script" id=2]
+
+[node name="Popup" type="Popup"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 300, 300 )
+popup_exclusive = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.411765, 0.905882, 0.513726, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 5
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 138.0
+margin_right = 300.0
+margin_bottom = 162.0
+
+[node name="Label" type="Label" parent="VBoxContainer/Name"]
+margin_right = 132.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Name : "
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Name"]
+margin_left = 136.0
+margin_right = 269.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+max_length = 8
+placeholder_text = "Choose name"
+
+[node name="Button" type="Button" parent="VBoxContainer/Name"]
+margin_left = 273.0
+margin_right = 300.0
+margin_bottom = 24.0
+text = "ok"
+
+[node name="Pet1" parent="VBoxContainer" instance=ExtResource( 1 )]
+visible = false
+margin_top = 132.0
+margin_right = 300.0
+margin_bottom = 196.0
+
+[node name="Pet2" parent="VBoxContainer" instance=ExtResource( 1 )]
+visible = false
+margin_top = 63.0
+margin_right = 300.0
+margin_bottom = 127.0
+BodyValue = 3
+MindValue = 2
+SpiritValue = 8
+spritesheet = "cream_baby"
+
+[node name="Pet3" parent="VBoxContainer" instance=ExtResource( 1 )]
+visible = false
+margin_top = 98.0
+margin_right = 300.0
+margin_bottom = 162.0
+BodyValue = 8
+MindValue = 1
+spritesheet = "blue_baby"
+
+[node name="Pet4" parent="VBoxContainer" instance=ExtResource( 1 )]
+visible = false
+margin_top = 132.0
+margin_right = 300.0
+margin_bottom = 196.0
+BodyValue = 4
+MindValue = 9
+SpiritValue = 2
+spritesheet = "green_baby"
+
+[connection signal="pressed" from="VBoxContainer/Name/Button" to="." method="_on_Button_pressed"]

@@ -1,0 +1,89 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Player/PlayerPet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UI/Pet.gd" type="Script" id=2]
+
+[node name="Pet" type="HBoxContainer"]
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 300, 64 )
+size_flags_horizontal = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+spritesheet = "pink_baby"
+
+[node name="Container" type="Container" parent="."]
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+
+[node name="PlayerPet" parent="Container" instance=ExtResource( 1 )]
+animation = "pink_baby"
+
+[node name="BaseStats" type="GridContainer" parent="."]
+margin_left = 68.0
+margin_right = 182.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+
+[node name="Body" type="Label" parent="BaseStats"]
+margin_right = 33.0
+margin_bottom = 14.0
+text = "Body"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BodyValue" type="Label" parent="BaseStats"]
+margin_left = 37.0
+margin_right = 45.0
+margin_bottom = 14.0
+text = "5"
+
+[node name="Mind" type="Label" parent="BaseStats"]
+margin_top = 18.0
+margin_right = 33.0
+margin_bottom = 32.0
+text = "Mind"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MindValue" type="Label" parent="BaseStats"]
+margin_left = 37.0
+margin_top = 18.0
+margin_right = 45.0
+margin_bottom = 32.0
+text = "5"
+
+[node name="Spirt" type="Label" parent="BaseStats"]
+margin_top = 36.0
+margin_right = 33.0
+margin_bottom = 50.0
+text = "Spirit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpiritValue" type="Label" parent="BaseStats"]
+margin_left = 37.0
+margin_top = 36.0
+margin_right = 45.0
+margin_bottom = 50.0
+text = "5"
+
+[node name="Button" type="Button" parent="."]
+margin_left = 186.0
+margin_right = 300.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "ok"
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

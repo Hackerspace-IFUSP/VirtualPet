@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Sprites/egg1.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/egg2.png" type="Texture" id=3]
+[ext_resource path="res://Title/Title.gd" type="Script" id=4]
+[ext_resource path="res://UI/Choose.tscn" type="PackedScene" id=5]
+
+[sub_resource type="AnimatedTexture" id=1]
+frames = 2
+frame_0/texture = ExtResource( 2 )
+frame_1/texture = ExtResource( 3 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=2]
+frames = 2
+fps = 10.0
+frame_0/texture = ExtResource( 2 )
+frame_1/texture = ExtResource( 3 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Background/VBoxContainer/CenterContainer/Start:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "shake"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Background/VBoxContainer/CenterContainer/Start:rect_rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -10.0, 10.0 ]
+}
+
+[node name="Title" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 388, 350 )
+color = Color( 0.752941, 0.839216, 0.917647, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Background/VBoxContainer"]
+margin_top = 167.0
+margin_right = 512.0
+margin_bottom = 183.0
+
+[node name="Start" type="TextureButton" parent="Background/VBoxContainer/CenterContainer"]
+margin_left = 248.0
+margin_right = 264.0
+margin_bottom = 16.0
+rect_pivot_offset = Vector2( 8, 8 )
+texture_normal = SubResource( 1 )
+texture_pressed = SubResource( 1 )
+texture_hover = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
+anims/shake = SubResource( 4 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Popup" parent="." instance=ExtResource( 5 )]
+
+[connection signal="mouse_entered" from="Background/VBoxContainer/CenterContainer/Start" to="." method="_on_Start_mouse_entered"]
+[connection signal="mouse_exited" from="Background/VBoxContainer/CenterContainer/Start" to="." method="_on_Start_mouse_exited"]
+[connection signal="pressed" from="Background/VBoxContainer/CenterContainer/Start" to="." method="_on_Start_pressed"]
