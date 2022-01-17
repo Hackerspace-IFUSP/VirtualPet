@@ -6,7 +6,14 @@
 [node name="PlayerPet" type="AnimatedSprite"]
 scale = Vector2( 4, 4 )
 frames = ExtResource( 1 )
-animation = "green_baby"
+animation = "adult_green"
+frame = 1
 playing = true
 centered = false
 script = ExtResource( 2 )
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]

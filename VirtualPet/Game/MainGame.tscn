@@ -56,7 +56,7 @@ margin_bottom = 22.0
 size_flags_horizontal = 3
 text = "Day: []"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control"]
+[node name="Actions" type="VBoxContainer" parent="UI/Control"]
 margin_left = 7.0
 margin_top = 49.0
 margin_right = 207.0
@@ -66,20 +66,87 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Play" type="Button" parent="UI/Control/VBoxContainer"]
+[node name="Play" type="Button" parent="UI/Control/Actions"]
 margin_right = 200.0
 margin_bottom = 20.0
 text = "Play"
 
-[node name="Jog" type="Button" parent="UI/Control/VBoxContainer"]
+[node name="Sleep" type="Button" parent="UI/Control/Actions"]
 margin_top = 24.0
 margin_right = 200.0
 margin_bottom = 44.0
+text = "Sleep"
 
-[node name="Sleep" type="Button" parent="UI/Control/VBoxContainer"]
-margin_top = 48.0
-margin_right = 200.0
-margin_bottom = 68.0
+[node name="Stats" type="VBoxContainer" parent="UI/Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -126.0
+margin_top = 43.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Healt" type="HBoxContainer" parent="UI/Control/Stats"]
+margin_right = 126.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="UI/Control/Stats/Healt"]
+margin_right = 36.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 36, 36 )
+color = Color( 0.756863, 0.0666667, 0.14902, 1 )
+
+[node name="HealtBar" type="ProgressBar" parent="UI/Control/Stats/Healt"]
+margin_left = 40.0
+margin_top = 11.0
+margin_right = 126.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 100.0
+
+[node name="Happines" type="HBoxContainer" parent="UI/Control/Stats"]
+margin_top = 40.0
+margin_right = 126.0
+margin_bottom = 76.0
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="UI/Control/Stats/Happines"]
+margin_right = 36.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 36, 36 )
+color = Color( 0.109804, 0.564706, 0.721569, 1 )
+
+[node name="HappyBar" type="ProgressBar" parent="UI/Control/Stats/Happines"]
+margin_left = 40.0
+margin_top = 11.0
+margin_right = 126.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Energy" type="HBoxContainer" parent="UI/Control/Stats"]
+margin_top = 80.0
+margin_right = 126.0
+margin_bottom = 116.0
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="UI/Control/Stats/Energy"]
+margin_right = 36.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 36, 36 )
+color = Color( 1, 0.890196, 0, 1 )
+
+[node name="EnergyBar" type="ProgressBar" parent="UI/Control/Stats/Energy"]
+margin_left = 40.0
+margin_top = 11.0
+margin_right = 126.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 100.0
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 186, 155 )
@@ -90,10 +157,13 @@ hframes = 2
 
 [node name="PlayerPet" parent="." instance=ExtResource( 2 )]
 position = Vector2( 239, 222 )
+animation = "pink_baby"
+frame = 0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
 
-[connection signal="pressed" from="UI/Control/VBoxContainer/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="UI/Control/Actions/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="UI/Control/Actions/Sleep" to="." method="_on_Sleep_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
