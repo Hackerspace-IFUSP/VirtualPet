@@ -15,7 +15,7 @@ func died():
 		play("good_ghost")
 	else:
 		play("bad_ghost")
-
+	GameState.pet_age = 0
 
 func _on_DeathTimer_timeout():
 	print("acabou")

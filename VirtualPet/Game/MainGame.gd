@@ -1,5 +1,9 @@
 extends Node2D
 
+var is_pleased = true
+enum needs {food, bath, play, none = -1}
+var need_now = needs.none
+
 
 func _ready():
 	
@@ -15,6 +19,11 @@ func _ready():
 		$Background.frame = 1
 		$PlayerPet.speed_scale = .5
 	get_tree().call_group("GUI", "update_gui")
+
+	randomize()
+	$Need.wait_time = 1 + randi () % 5
+	$Need.start()
+
 
 func _process(delta):
 	GameState.Energy-=.02
@@ -39,6 +48,26 @@ func set_anim():
 					$PlayerPet.play("cream_baby")
 				GameState.type.PINK:
 					$PlayerPet.play("pink_baby")
+	if GameState.pet_age == "child":
+		match GameState.pet_type:
+				GameState.type.GREEN:
+					$PlayerPet.play("child_green")
+				GameState.type.BLUE:
+					$PlayerPet.play("child_blue")
+				GameState.type.CREAM:
+					$PlayerPet.play("child_cream")
+				GameState.type.PINK:
+					$PlayerPet.play("child_pink")
+	if GameState.pet_age == "adult":
+		match GameState.pet_type:
+				GameState.type.GREEN:
+					$PlayerPet.play("adult_green")
+				GameState.type.BLUE:
+					$PlayerPet.play("adult_blue")
+				GameState.type.CREAM:
+					$PlayerPet.play("adult_cream")
+				GameState.type.PINK:
+					$PlayerPet.play("adult_pink")
 
 
 func _on_Timer_timeout():
@@ -46,19 +75,29 @@ func _on_Timer_timeout():
 	if GameState.day:
 		$Background.frame = 0
 		GameState.days_passed+=1
+		GameState.pet_days+=1
 		get_tree().call_group("GUI", "update_gui")
 		$PlayerPet.speed_scale = 1
 	if not GameState.day:
 		$Background.frame = 1
 		$PlayerPet.speed_scale = .5
 	$Timer.start()
+	set_anim()
 
 
 func _on_Play_pressed():
-	GameState.Energy-=10
-	GameState.Happines+=10
-	get_tree().call_group("GUI", "update_gui")
-	get_tree().change_scene("res://MiniGame/JoKenPo.tscn")
+	if GameState.Energy >= 10:
+		GameState.Energy-=10
+		if is_pleased == false and need_now == needs.play:
+			GameState.Happines+=20
+			is_pleased = true
+			need_now = needs.none
+			need_text()
+			$Need.start()
+		else:
+			GameState.Happines+=10
+		get_tree().call_group("GUI", "update_gui")
+		get_tree().change_scene("res://MiniGame/JoKenPo.tscn")
 
 
 func _on_Sleep_pressed():
@@ -81,3 +120,61 @@ func _on_PlayerPet_died():
 
 func _on_PlayerPet_tired():
 	$UI/Control/Actions/Play.disabled = true
+
+
+func _on_Need_timeout():
+	print("começou")
+	var next_need = randi() % 3
+	need_now = next_need
+	is_pleased = false
+	need_text()
+
+	$WaitAction.start()				
+
+func need_text():
+		match need_now:
+			0:
+				$TextureRect.text = "food"
+			1:
+				$TextureRect.text = "bath"
+			2:
+				$TextureRect.text = "play"
+			_:
+				$TextureRect.text = "none"
+
+func _on_Food_pressed():
+	if need_now == needs.food and is_pleased == false:
+		GameState.Happines+=10
+		GameState.Health+=10
+		get_tree().call_group("GUI", "update_gui")
+		need_now = needs.none
+		is_pleased = true	
+		need_text()
+	
+func _on_Wait_action_timeout():
+	if not is_pleased:
+		print("n deu =( ")
+		match need_now:
+			0:
+				GameState.Health -= 10
+				GameState.Happines -= 10
+			1:
+				GameState.Health -= 10
+				GameState.Happines -= 10
+			2:
+				GameState.Happines -= 10
+			_:
+				pass
+	get_tree().call_group("GUI", "update_gui")	
+	
+	$Need.wait_time = 3 + randi() % 3
+	$Need.start()
+
+func _on_Bath_pressed():
+	if need_now == needs.bath and is_pleased == false:
+		GameState.Happines+=10
+		GameState.Health+=10
+		get_tree().call_group("GUI", "update_gui")
+		need_now = needs.none
+		is_pleased = true	
+		need_text()

@@ -13,4 +13,5 @@ func update_gui():
 	$Control/Stats/Healt/HealtBar.value = GameState.Health
 	$Control/Stats/Happines/HappyBar.value = GameState.Happines
 	$Control/Stats/Energy/EnergyBar.value = GameState.Energy
+	$Control/HBoxContainer2/PetAge.text = "pet age :" + str(GameState.pet_days)
 

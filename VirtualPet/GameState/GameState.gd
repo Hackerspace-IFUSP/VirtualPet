@@ -6,8 +6,11 @@ var pet_name : String = "" setget set_name, get_name
 var day = true setget set_day, get_day
 var days_passed = 1 setget set_days, get_days
 
+var pet_days = 0 setget set_petday, get_petday
+
 enum type {GREEN, BLUE, PINK, CREAM}
 enum age {BABY, CHILD, ADULT}
+
 
 var pet_age = age.BABY setget ,get_age
 var pet_type = type.PINK
@@ -80,3 +83,15 @@ func set_name(name):
 	
 func get_name():
 	return pet_name
+	
+func  set_petday(petday):
+	pet_days = petday
+	if pet_days <=5:
+		pet_age = age.BABY
+	if pet_days > 5 and pet_days <= 10:
+		pet_age = age.CHILD
+	if pet_days > 10:
+		pet_age = age.ADULT
+
+func get_petday():
+	return pet_days
