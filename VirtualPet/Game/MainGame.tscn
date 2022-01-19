@@ -186,6 +186,7 @@ hframes = 2
 
 [node name="PlayerPet" parent="." instance=ExtResource( 2 )]
 animation = "pink_baby"
+frame = 0
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

@@ -6,4 +6,4 @@ func _ready():
 	$Popup.popup_centered()
 	GameState.Happines = 100
 	GameState.Health = 100
-	GameState.Energy
+	GameState.Energy = 100

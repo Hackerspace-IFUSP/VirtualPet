@@ -29,10 +29,10 @@ func _process(delta):
 	GameState.Energy-=.02
 	$UI/Control/Stats/Energy/EnergyBar.value = GameState.Energy
 	
-	GameState.Happines-=.01
+	GameState.Happines-=.1
 	$UI/Control/Stats/Happines/HappyBar.value = GameState.Happines
 	
-	GameState.Health-=.01
+	GameState.Health-=.1
 	$UI/Control/Stats/Healt/HealtBar.value = GameState.Health
 	
 
@@ -114,6 +114,7 @@ func _on_Sleep_pressed():
 
 func _on_PlayerPet_died():
 	$PlayerPet.died()
+	$Timer.stop()
 	#$PlayerPet/DeathTimer.start()
 	#get_tree().change_scene("res://Game/Respawn.tscn")
 
