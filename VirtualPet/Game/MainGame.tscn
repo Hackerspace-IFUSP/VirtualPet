@@ -177,16 +177,19 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 value = 100.0
 
+[node name="Button" type="Button" parent="UI/Control"]
+margin_left = 408.0
+margin_top = 232.0
+margin_right = 478.0
+margin_bottom = 252.0
+text = "Next Day"
+
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( -69, -74 )
 scale = Vector2( 12, 12 )
 texture = ExtResource( 4 )
 centered = false
 hframes = 2
-
-[node name="PlayerPet" parent="." instance=ExtResource( 2 )]
-animation = "pink_baby"
-frame = 0
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
@@ -204,11 +207,17 @@ margin_top = -11.0
 margin_right = -124.0
 margin_bottom = 3.0
 text = "food"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerPet" parent="." instance=ExtResource( 2 )]
 
 [connection signal="pressed" from="UI/Control/Actions/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="UI/Control/Actions/Sleep" to="." method="_on_Sleep_pressed"]
 [connection signal="pressed" from="UI/Control/Actions/Food" to="." method="_on_Food_pressed"]
 [connection signal="pressed" from="UI/Control/Actions/Bath" to="." method="_on_Bath_pressed"]
+[connection signal="pressed" from="UI/Control/Button" to="." method="_on_Button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Need" to="." method="_on_Need_timeout"]
 [connection signal="timeout" from="WaitAction" to="." method="_on_Wait_action_timeout"]

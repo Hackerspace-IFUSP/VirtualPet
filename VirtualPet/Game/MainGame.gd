@@ -26,13 +26,13 @@ func _ready():
 
 
 func _process(delta):
-	GameState.Energy-=.02
+	#GameState.Energy-=.02
 	$UI/Control/Stats/Energy/EnergyBar.value = GameState.Energy
 	
-	GameState.Happines-=.1
+	#GameState.Happines-=.1
 	$UI/Control/Stats/Happines/HappyBar.value = GameState.Happines
 	
-	GameState.Health-=.1
+	#GameState.Health-=.1
 	$UI/Control/Stats/Healt/HealtBar.value = GameState.Health
 	
 
@@ -71,19 +71,19 @@ func set_anim():
 
 
 func _on_Timer_timeout():
-	GameState.day = !GameState.day
-	if GameState.day:
-		$Background.frame = 0
-		GameState.days_passed+=1
-		GameState.pet_days+=1
-		get_tree().call_group("GUI", "update_gui")
-		$PlayerPet.speed_scale = 1
-	if not GameState.day:
-		$Background.frame = 1
-		$PlayerPet.speed_scale = .5
-	$Timer.start()
-	set_anim()
-
+#	GameState.day = !GameState.day
+#	if GameState.day:
+#		$Background.frame = 0
+#		GameState.days_passed+=1
+#		GameState.pet_days+=1
+#		get_tree().call_group("GUI", "update_gui")
+#		$PlayerPet.speed_scale = 1
+#	if not GameState.day:
+#		$Background.frame = 1
+#		$PlayerPet.speed_scale = .5
+#	$Timer.start()
+#	set_anim()
+	pass
 
 func _on_Play_pressed():
 	if GameState.Energy >= 10:
@@ -93,7 +93,7 @@ func _on_Play_pressed():
 			is_pleased = true
 			need_now = needs.none
 			need_text()
-			$Need.start()
+#			$Need.start()
 		else:
 			GameState.Happines+=10
 		get_tree().call_group("GUI", "update_gui")
@@ -124,13 +124,14 @@ func _on_PlayerPet_tired():
 
 
 func _on_Need_timeout():
-	print("começou")
-	var next_need = randi() % 3
-	need_now = next_need
-	is_pleased = false
-	need_text()
-
-	$WaitAction.start()				
+#	print("começou")
+#	var next_need = randi() % 3
+#	need_now = next_need
+#	is_pleased = false
+#	need_text()
+#
+#	$WaitAction.start()	
+	pass
 
 func need_text():
 		match need_now:
@@ -153,6 +154,54 @@ func _on_Food_pressed():
 		need_text()
 	
 func _on_Wait_action_timeout():
+#	if not is_pleased:
+#		print("n deu =( ")
+#		match need_now:
+#			0:
+#				GameState.Health -= 10
+#				GameState.Happines -= 10
+#			1:
+#				GameState.Health -= 10
+#				GameState.Happines -= 10
+#			2:
+#				GameState.Happines -= 10
+#			_:
+#				pass
+#	get_tree().call_group("GUI", "update_gui")	
+#	
+#	$Need.wait_time = 3 + randi() % 3
+#	$Need.start()
+
+	pass
+
+func _on_Bath_pressed():
+	if need_now == needs.bath and is_pleased == false:
+		GameState.Happines+=10
+		GameState.Health+=10
+		get_tree().call_group("GUI", "update_gui")
+		need_now = needs.none
+		is_pleased = true	
+		need_text()
+
+
+func _on_Button_pressed():
+	GameState.day = !GameState.day
+	if GameState.day:
+		$Background.frame = 0
+		GameState.days_passed+=1
+		GameState.pet_days+=1
+		get_tree().call_group("GUI", "update_gui")
+		$PlayerPet.speed_scale = 1
+	if not GameState.day:
+		$Background.frame = 1
+		$PlayerPet.speed_scale = .5
+	#$Timer.start()
+	set_anim()
+	needs()
+	neglected()
+
+
+func neglected():
 	if not is_pleased:
 		print("n deu =( ")
 		match need_now:
@@ -166,16 +215,12 @@ func _on_Wait_action_timeout():
 				GameState.Happines -= 10
 			_:
 				pass
-	get_tree().call_group("GUI", "update_gui")	
+	get_tree().call_group("GUI", "update_gui")
 	
-	$Need.wait_time = 3 + randi() % 3
-	$Need.start()
-
-func _on_Bath_pressed():
-	if need_now == needs.bath and is_pleased == false:
-		GameState.Happines+=10
-		GameState.Health+=10
-		get_tree().call_group("GUI", "update_gui")
-		need_now = needs.none
-		is_pleased = true	
-		need_text()
+	
+func needs():
+	print("começou")
+	var next_need = randi() % 3
+	need_now = next_need
+	is_pleased = false
+	need_text()

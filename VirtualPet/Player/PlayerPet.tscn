@@ -128,7 +128,7 @@ tracks/1/keys = {
 [node name="PlayerPet" type="AnimatedSprite"]
 scale = Vector2( 4, 4 )
 frames = ExtResource( 1 )
-animation = "adult_blue"
+animation = "green_baby"
 frame = 1
 playing = true
 centered = false
