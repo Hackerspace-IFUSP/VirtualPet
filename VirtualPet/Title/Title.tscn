@@ -1,9 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
+[ext_resource path="res://Title/DefFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Sprites/egg1.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/egg2.png" type="Texture" id=3]
 [ext_resource path="res://Title/Title.gd" type="Script" id=4]
 [ext_resource path="res://UI/Choose.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Theme" id=6]
+default_font = ExtResource( 1 )
 
 [sub_resource type="AnimatedTexture" id=1]
 frames = 2
@@ -52,6 +56,7 @@ tracks/0/keys = {
 [node name="Title" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = SubResource( 6 )
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -98,6 +103,16 @@ anims/shake = SubResource( 4 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Popup" parent="." instance=ExtResource( 5 )]
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+margin_bottom = 16.0
+custom_colors/font_color = Color( 1, 0.984314, 0.0784314, 1 )
+text = "RePet"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="mouse_entered" from="Background/VBoxContainer/CenterContainer/Start" to="." method="_on_Start_mouse_entered"]
 [connection signal="mouse_exited" from="Background/VBoxContainer/CenterContainer/Start" to="." method="_on_Start_mouse_exited"]
