@@ -186,8 +186,6 @@ margin_bottom = 36.0
 size_flags_horizontal = 3
 
 [node name="ColorRect" type="ColorRect" parent="UI/Control/Stats/Healt"]
-anchor_left = 0.0238095
-anchor_right = 0.0238095
 margin_right = 36.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 36, 36 )
@@ -214,8 +212,6 @@ margin_bottom = 76.0
 size_flags_horizontal = 3
 
 [node name="ColorRect" type="ColorRect" parent="UI/Control/Stats/Happines"]
-anchor_left = 0.0238095
-anchor_right = 0.0238095
 margin_right = 36.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 36, 36 )
@@ -300,12 +296,13 @@ margin_top = -11.0
 margin_right = -124.0
 margin_bottom = 3.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "food"
+text = "none"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PlayerPet" parent="." instance=ExtResource( 2 )]
+frame = 0
 
 [connection signal="pressed" from="UI/Control/Actions/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="UI/Control/Actions/Sleep" to="." method="_on_Sleep_pressed"]

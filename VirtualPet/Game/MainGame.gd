@@ -197,8 +197,9 @@ func _on_Button_pressed():
 		$PlayerPet.speed_scale = .5
 	#$Timer.start()
 	set_anim()
-	needs()
+	#first check if negleted, them udpdate the need
 	neglected()
+	needs()
 
 
 func neglected():

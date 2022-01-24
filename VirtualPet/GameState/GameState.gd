@@ -24,7 +24,7 @@ signal tired
 
 
 func set_health(health):
-	Health = health
+	Health = clamp(health,0,100)
 	if Health <= 0:
 		emit_signal("died")
 		
@@ -32,7 +32,7 @@ func get_health():
 	return Health
 	
 func set_happines(happines):
-	Happines = happines
+	Happines = clamp(happines,0,100)
 	if Happines <= 0:
 		emit_signal("died")
 		
