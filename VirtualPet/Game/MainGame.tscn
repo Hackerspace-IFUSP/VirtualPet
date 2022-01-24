@@ -346,6 +346,7 @@ __meta__ = {
 }
 
 [node name="PlayerPet" parent="." instance=ExtResource( 2 )]
+frame = 0
 
 [connection signal="pressed" from="UI/Control/Actions/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="UI/Control/Actions/Sleep" to="." method="_on_Sleep_pressed"]

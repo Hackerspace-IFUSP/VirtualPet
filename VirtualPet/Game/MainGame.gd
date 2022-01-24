@@ -120,6 +120,7 @@ func _on_Sleep_pressed():
 func _on_PlayerPet_died():
 	$PlayerPet.died()
 	$Timer.stop()
+	$UI/Control/Button.disabled = true
 	#$PlayerPet/DeathTimer.start()
 	#get_tree().change_scene("res://Game/Respawn.tscn")
 
