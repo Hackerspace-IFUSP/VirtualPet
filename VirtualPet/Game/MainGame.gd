@@ -96,8 +96,12 @@ func _on_Play_pressed():
 #			$Need.start()
 		else:
 			GameState.Happines+=10
+		$UI/Control/Actions/SFX/Button4.play()
+		yield($UI/Control/Actions/SFX/Button4,"finished")
 		get_tree().call_group("GUI", "update_gui")
 		get_tree().change_scene("res://MiniGame/JoKenPo.tscn")
+		
+
 
 
 func _on_Sleep_pressed():
@@ -111,6 +115,7 @@ func _on_Sleep_pressed():
 	GameState.Energy = 100
 	$UI/Control/Stats/Energy/EnergyBar.value = GameState.Energy
 
+	$UI/Control/Actions/SFX/Button3.play()
 
 func _on_PlayerPet_died():
 	$PlayerPet.died()
@@ -151,6 +156,7 @@ func _on_Food_pressed():
 		get_tree().call_group("GUI", "update_gui")
 		need_now = needs.none
 		is_pleased = true	
+		$UI/Control/Actions/SFX/Button1.play()
 		need_text()
 	
 func _on_Wait_action_timeout():
@@ -181,6 +187,7 @@ func _on_Bath_pressed():
 		get_tree().call_group("GUI", "update_gui")
 		need_now = needs.none
 		is_pleased = true	
+		$UI/Control/Actions/SFX/Button2.play()
 		need_text()
 
 
@@ -200,6 +207,7 @@ func _on_Button_pressed():
 	#first check if negleted, them udpdate the need
 	neglected()
 	needs()
+	$UI/Control/Actions/SFX/Button1.play()
 
 
 func neglected():

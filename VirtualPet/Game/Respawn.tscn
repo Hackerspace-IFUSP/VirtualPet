@@ -7,3 +7,7 @@
 script = ExtResource( 2 )
 
 [node name="Popup" parent="." instance=ExtResource( 1 )]
+margin_right = 512.0
+margin_bottom = 352.0
+grow_horizontal = 2
+grow_vertical = 2

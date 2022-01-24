@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://UI/UI.gd" type="Script" id=1]
 [ext_resource path="res://Player/PlayerPet.tscn" type="PackedScene" id=2]
@@ -10,6 +10,14 @@
 [ext_resource path="res://Sprites/Play.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/Sleep.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/Food.png" type="Texture" id=10]
+[ext_resource path="res://FreePixel.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://SFX/Button2.wav" type="AudioStream" id=12]
+[ext_resource path="res://SFX/Button.wav" type="AudioStream" id=13]
+[ext_resource path="res://SFX/Button3.wav" type="AudioStream" id=14]
+[ext_resource path="res://SFX/Button4.wav" type="AudioStream" id=15]
+
+[sub_resource type="DynamicFont" id=22]
+font_data = ExtResource( 11 )
 
 [sub_resource type="StyleBoxFlat" id=14]
 bg_color = Color( 0.960784, 0.862745, 0.890196, 1 )
@@ -38,6 +46,13 @@ bg_color = Color( 0.960784, 0.862745, 0.890196, 1 )
 [sub_resource type="StyleBoxTexture" id=8]
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 125, 20 )
+
+[sub_resource type="StyleBoxTexture" id=21]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, -0.445431, 123.996, 20.4454 )
+
+[sub_resource type="StyleBoxFlat" id=20]
+bg_color = Color( 1, 0.831373, 0.647059, 1 )
 
 [sub_resource type="StyleBoxFlat" id=18]
 bg_color = Color( 0.960784, 0.862745, 0.890196, 1 )
@@ -78,36 +93,36 @@ __meta__ = {
 }
 
 [node name="Name" type="Label" parent="UI/Control/HBoxContainer"]
-margin_top = 8.0
+margin_top = 5.0
 margin_right = 125.0
-margin_bottom = 22.0
+margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Name: []"
 
 [node name="Life" type="Label" parent="UI/Control/HBoxContainer"]
 margin_left = 129.0
-margin_top = 8.0
+margin_top = 5.0
 margin_right = 254.0
-margin_bottom = 22.0
+margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Life : []"
 
 [node name="Age" type="Label" parent="UI/Control/HBoxContainer"]
 margin_left = 258.0
-margin_top = 8.0
+margin_top = 5.0
 margin_right = 383.0
-margin_bottom = 22.0
+margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Age: []"
 
 [node name="Day" type="Label" parent="UI/Control/HBoxContainer"]
 margin_left = 387.0
-margin_top = 8.0
+margin_top = 5.0
 margin_right = 512.0
-margin_bottom = 22.0
+margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Day: []"
@@ -122,9 +137,9 @@ __meta__ = {
 }
 
 [node name="PetAge" type="Label" parent="UI/Control/HBoxContainer2"]
-margin_top = 8.0
+margin_top = 5.0
 margin_right = 512.0
-margin_bottom = 22.0
+margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Pet age: []"
@@ -141,34 +156,52 @@ __meta__ = {
 
 [node name="Play" type="Button" parent="UI/Control/Actions"]
 margin_right = 125.0
-margin_bottom = 14.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 22 )
 custom_styles/hover = SubResource( 14 )
 custom_styles/normal = SubResource( 5 )
 text = "Play"
 
 [node name="Sleep" type="Button" parent="UI/Control/Actions"]
-margin_top = 18.0
+margin_top = 20.0
 margin_right = 125.0
-margin_bottom = 32.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 22 )
 custom_styles/hover = SubResource( 15 )
 custom_styles/normal = SubResource( 6 )
 text = "Sleep"
 
 [node name="Food" type="Button" parent="UI/Control/Actions"]
-margin_top = 36.0
+margin_top = 40.0
 margin_right = 125.0
-margin_bottom = 50.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 22 )
 custom_styles/hover = SubResource( 16 )
 custom_styles/normal = SubResource( 7 )
 text = "Food"
 
 [node name="Bath" type="Button" parent="UI/Control/Actions"]
-margin_top = 54.0
+margin_top = 60.0
 margin_right = 125.0
-margin_bottom = 68.0
+margin_bottom = 76.0
+custom_fonts/font = SubResource( 22 )
 custom_styles/hover = SubResource( 17 )
 custom_styles/normal = SubResource( 8 )
 text = "Bath"
+
+[node name="SFX" type="Node2D" parent="UI/Control/Actions"]
+
+[node name="Button1" type="AudioStreamPlayer" parent="UI/Control/Actions/SFX"]
+stream = ExtResource( 13 )
+
+[node name="Button2" type="AudioStreamPlayer" parent="UI/Control/Actions/SFX"]
+stream = ExtResource( 12 )
+
+[node name="Button3" type="AudioStreamPlayer" parent="UI/Control/Actions/SFX"]
+stream = ExtResource( 14 )
+
+[node name="Button4" type="AudioStreamPlayer" parent="UI/Control/Actions/SFX"]
+stream = ExtResource( 15 )
 
 [node name="Stats" type="VBoxContainer" parent="UI/Control"]
 anchor_left = 1.0
@@ -193,11 +226,14 @@ color = Color( 0.756863, 0.0666667, 0.14902, 0 )
 
 [node name="HealtBar" type="ProgressBar" parent="UI/Control/Stats/Healt"]
 margin_left = 40.0
-margin_top = 11.0
+margin_top = 10.0
 margin_right = 126.0
-margin_bottom = 25.0
+margin_bottom = 26.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
+custom_fonts/font = SubResource( 22 )
+custom_styles/fg = SubResource( 21 )
+custom_styles/bg = SubResource( 20 )
 value = 100.0
 
 [node name="Food" type="Sprite" parent="UI/Control/Stats/Healt"]
@@ -219,11 +255,14 @@ color = Color( 0.109804, 0.564706, 0.721569, 0 )
 
 [node name="HappyBar" type="ProgressBar" parent="UI/Control/Stats/Happines"]
 margin_left = 40.0
-margin_top = 11.0
+margin_top = 10.0
 margin_right = 126.0
-margin_bottom = 25.0
+margin_bottom = 26.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
+custom_fonts/font = SubResource( 22 )
+custom_styles/fg = SubResource( 21 )
+custom_styles/bg = SubResource( 20 )
 
 [node name="Play" type="Sprite" parent="UI/Control/Stats/Happines"]
 position = Vector2( 22, 21 )
@@ -244,11 +283,14 @@ color = Color( 1, 0.890196, 0, 0 )
 
 [node name="EnergyBar" type="ProgressBar" parent="UI/Control/Stats/Energy"]
 margin_left = 40.0
-margin_top = 11.0
+margin_top = 10.0
 margin_right = 126.0
-margin_bottom = 25.0
+margin_bottom = 26.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
+custom_fonts/font = SubResource( 22 )
+custom_styles/fg = SubResource( 21 )
+custom_styles/bg = SubResource( 20 )
 value = 100.0
 
 [node name="Sleep" type="Sprite" parent="UI/Control/Stats/Energy"]
@@ -261,6 +303,7 @@ margin_left = 408.0
 margin_top = 232.0
 margin_right = 478.0
 margin_bottom = 252.0
+custom_fonts/font = SubResource( 22 )
 custom_styles/hover = SubResource( 18 )
 custom_styles/normal = SubResource( 13 )
 text = "Next Day"
@@ -296,13 +339,13 @@ margin_top = -11.0
 margin_right = -124.0
 margin_bottom = 3.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 22 )
 text = "none"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PlayerPet" parent="." instance=ExtResource( 2 )]
-frame = 0
 
 [connection signal="pressed" from="UI/Control/Actions/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="UI/Control/Actions/Sleep" to="." method="_on_Sleep_pressed"]

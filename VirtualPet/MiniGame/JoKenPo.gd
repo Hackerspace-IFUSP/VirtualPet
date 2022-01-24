@@ -16,6 +16,7 @@ func _on_Rock_pressed():
 	$CanvasLayer/Control/HBoxContainer/Rock.disabled = true
 	$CanvasLayer/Control/HBoxContainer/Paper.disabled = true
 	$CanvasLayer/Control/HBoxContainer/Scissors.disabled = true
+	$SFX_button.play()
 	_check_result()
 
 func _on_Paper_pressed():
@@ -23,6 +24,7 @@ func _on_Paper_pressed():
 	$CanvasLayer/Control/HBoxContainer/Rock.disabled = true
 	$CanvasLayer/Control/HBoxContainer/Paper.disabled = true
 	$CanvasLayer/Control/HBoxContainer/Scissors.disabled = true
+	$SFX_button.play()
 	_check_result()
 
 func _on_Scissors_pressed():
@@ -30,6 +32,7 @@ func _on_Scissors_pressed():
 	$CanvasLayer/Control/HBoxContainer/Rock.disabled = true
 	$CanvasLayer/Control/HBoxContainer/Paper.disabled = true
 	$CanvasLayer/Control/HBoxContainer/Scissors.disabled = true
+	$SFX_button.play()
 	_check_result()
 	
 func _check_result():

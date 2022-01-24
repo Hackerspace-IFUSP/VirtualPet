@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://MiniGame/JoKenPo.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/jokenpo.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://Sprites/Backgrounds-Sheet.png" type="Texture" id=3]
+[ext_resource path="res://FreePixel.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Sprites/Button.png" type="Texture" id=5]
+[ext_resource path="res://SFX/Button3.wav" type="AudioStream" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Played"
@@ -231,6 +234,19 @@ tracks/5/keys = {
 "values": [ Vector2( 8, 8 ) ]
 }
 
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 125, 20 )
+margin_left = 2.07689
+margin_right = 2.32283
+margin_top = 2.18081
+margin_bottom = 2.32283
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
 [node name="JoKenPo" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -280,21 +296,27 @@ __meta__ = {
 }
 
 [node name="Rock" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
-margin_left = 175.0
-margin_right = 217.0
-margin_bottom = 20.0
+margin_left = 178.0
+margin_right = 214.4
+margin_bottom = 20.5036
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
 text = "Rock"
 
 [node name="Paper" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
-margin_left = 221.0
-margin_right = 269.0
-margin_bottom = 20.0
+margin_left = 218.0
+margin_right = 262.4
+margin_bottom = 20.5036
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
 text = "Paper"
 
 [node name="Scissors" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
-margin_left = 273.0
-margin_right = 337.0
-margin_bottom = 20.0
+margin_left = 266.0
+margin_right = 334.4
+margin_bottom = 20.5036
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
 text = "Scissors"
 
 [node name="PlayerWinner" type="Label" parent="CanvasLayer/Control"]
@@ -305,6 +327,9 @@ align = 1
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="SFX_button" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
 
 [connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Rock" to="." method="_on_Rock_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Paper" to="." method="_on_Paper_pressed"]

@@ -5,6 +5,7 @@ onready var start_button = $Background/VBoxContainer/CenterContainer/Start
 func _ready():
 	yield(get_tree(),"idle_frame")
 	start_button.rect_scale = Vector2(3,3)
+	$Logo_anim.play("Event")
 	
 	
 

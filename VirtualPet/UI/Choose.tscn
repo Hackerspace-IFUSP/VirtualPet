@@ -1,13 +1,29 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://UI/Pet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/Choose.gd" type="Script" id=2]
+[ext_resource path="res://FreePixel.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Sprites/Background.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Button.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=22]
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 125, 20 )
+margin_left = 2.07689
+margin_right = 2.32283
+margin_top = 2.18081
+margin_bottom = 2.32283
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [node name="Popup" type="Popup"]
-margin_right = 40.0
-margin_bottom = 40.0
+visible = true
+margin_right = 511.0
+margin_bottom = 349.0
 rect_min_size = Vector2( 300, 300 )
-popup_exclusive = true
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -16,11 +32,22 @@ __meta__ = {
 [node name="TextureRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = 1.0
+margin_bottom = 3.0
 color = Color( 0.411765, 0.905882, 0.513726, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Sprite" parent="TextureRect"]
+position = Vector2( 258, 175 )
+texture = ExtResource( 4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = -1.0
+margin_bottom = 3.0
 custom_constants/separation = 5
 alignment = 1
 __meta__ = {
@@ -28,30 +55,40 @@ __meta__ = {
 }
 
 [node name="Name" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 138.0
-margin_right = 300.0
-margin_bottom = 162.0
+margin_top = 166.0
+margin_right = 510.0
+margin_bottom = 186.0
 
 [node name="Label" type="Label" parent="VBoxContainer/Name"]
-margin_right = 132.0
-margin_bottom = 24.0
+margin_right = 241.0
+margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 22 )
 text = "Name : "
+align = 1
+valign = 1
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer/Name"]
-margin_left = 136.0
-margin_right = 269.0
-margin_bottom = 24.0
+margin_left = 245.0
+margin_right = 486.0
+margin_bottom = 20.5036
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_fonts/font = SubResource( 22 )
+custom_styles/read_only = SubResource( 5 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/normal = SubResource( 5 )
 max_length = 8
 placeholder_text = "Choose name"
 
 [node name="Button" type="Button" parent="VBoxContainer/Name"]
-margin_left = 273.0
-margin_right = 300.0
-margin_bottom = 24.0
+margin_left = 490.0
+margin_right = 510.4
+margin_bottom = 20.5036
+custom_fonts/font = SubResource( 22 )
+custom_styles/normal = SubResource( 5 )
 text = "ok"
 
 [node name="Pet1" parent="VBoxContainer" instance=ExtResource( 1 )]
