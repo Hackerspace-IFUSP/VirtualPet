@@ -7,3 +7,4 @@ func _ready():
 	GameState.Happines = 100
 	GameState.Health = 100
 	GameState.Energy = 100
+	GameState.pet_days = 0
